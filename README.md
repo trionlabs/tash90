@@ -44,11 +44,13 @@ node --check public/site.js
 npx --yes wrangler@4.147.0 deploy
 ```
 
-### GitHub deployment status
+### Publish from GitHub
 
-Source changes are stored in the private `trionlabs/tash90` repository. Automatic deployment is **not yet enabled**. The existing organisation-wide Cloudflare GitHub installation could not be linked to this account. A GitHub Actions workflow has been prepared locally; enabling it awaits authorisation to create a deployment token restricted to the `tash90` Worker and store it as the repository secret `CLOUDFLARE_API_TOKEN`.
+Push changes to `main` in the private `trionlabs/tash90` repository. The `Deploy website` workflow checks JavaScript syntax and publishes `public/` to Cloudflare. You can also run it manually from the repository's Actions tab.
 
-Until automatic deployment has been enabled and tested, pushing to `main` does not publish the website. Use the manual command above.
+Automatic deployment was verified on 3 November 2026. Check the latest run at https://github.com/trionlabs/tash90/actions before assuming an edit is live. A failed deployment leaves the previous version online.
+
+The repository secret `CLOUDFLARE_API_TOKEN` contains an `Individual Workers Editor` token restricted to the `tash90` Worker. Keep this token out of source files. The workflow does not need the existing organisation-wide Cloudflare GitHub integration.
 
 ### Domain status
 
@@ -59,7 +61,7 @@ The apex domain is attached to the Worker in Cloudflare. As of 3 November 2026, 
 - `newt.ns.cloudflare.com`
 - `penny.ns.cloudflare.com`
 
-The imported five mail-forwarding MX records and SPF TXT record have been preserved. The default apex parking record was replaced. The `www` parking CNAME still needs replacing and attaching to this Worker. Domain HTTPS and public DNS must be checked after activation; the temporary URL is already live.
+The imported five mail-forwarding MX records and SPF TXT record have been preserved. The default apex parking record was replaced. The `www` parking CNAME was also replaced; both hostnames are attached to the Worker. Domain HTTPS and public DNS must be checked after activation; the temporary URL is already live.
 
 Custom domains are managed in Cloudflare, separately from `wrangler.jsonc`.
 
