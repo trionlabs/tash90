@@ -1,0 +1,11 @@
+{
+  "name": "tash90",
+  "account_id": "786c65e35a4249fa26839336ae30c99b",
+  "compatibility_date": "2026-11-03",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": true,
+  "preview_urls": false
+}
