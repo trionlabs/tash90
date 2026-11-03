@@ -56,12 +56,14 @@ The repository secret `CLOUDFLARE_API_TOKEN` contains an `Individual Workers Edi
 
 Target domain: https://tash90.org/
 
-The apex domain is attached to the Worker in Cloudflare. As of 3 November 2026, its zone is pending because Namecheap still delegates to its original nameservers. The required Cloudflare nameservers are:
+Both `tash90.org` and `www.tash90.org` are attached to the Worker. On 3 November 2026, these nameservers were saved at Namecheap and verified after reloading the registrar settings:
 
 - `newt.ns.cloudflare.com`
 - `penny.ns.cloudflare.com`
 
-The imported five mail-forwarding MX records and SPF TXT record have been preserved. The default apex parking record was replaced. The `www` parking CNAME was also replaced; both hostnames are attached to the Worker. Domain HTTPS and public DNS must be checked after activation; the temporary URL is already live.
+Cloudflare activation has been requested. At the last check, public DNS still returned the former Namecheap nameservers, so custom-domain HTTPS is not yet verified. The temporary Workers URL remains live while delegation propagates.
+
+The five imported mail-forwarding MX records and SPF TXT record have been preserved. Both default parking records were replaced with Worker custom domains.
 
 Custom domains are managed in Cloudflare, separately from `wrangler.jsonc`.
 
