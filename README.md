@@ -15,7 +15,7 @@ Source repository: `trionlabs/tash90` (public). The files in `public/` are inten
 
 The site has no application dependencies, analytics, cookies, forms or external fonts. The Turkish page remains readable without JavaScript.
 
-The contact link on the page goes to contact@tash90.org, which Cloudflare Email Routing forwards (set up separately, outside this repository).
+The contact link on the page goes to contact@tash90.org, which Namecheap email forwarding handles (configured at Namecheap, outside this repository). Cloudflare Email Routing is not used; the zone only carries Namecheap's MX and SPF records.
 
 ### Language and colour mode
 
@@ -43,13 +43,13 @@ node --check public/mosaic.js
 
 ## Hosting
 
-Live temporary URL: https://tash90.0x471.workers.dev/
+Live: https://tash90.org/ (also https://www.tash90.org/ and https://tash90.sparkling-queen-5e77.workers.dev/)
 
-Cloudflare Worker: `tash90`, using Static Assets. Only `public/` is published; no Worker application code runs. The configuration is in `wrangler.jsonc`.
+Cloudflare Worker: `tash90` in the Trion Labs Cloudflare account (`f0b938c1641f5223c48199ec45751913`), using Static Assets. Only `public/` is published; no Worker application code runs. The configuration is in `wrangler.jsonc`.
 
 ### Publish manually
 
-From the repository root, with an authorised Cloudflare login:
+From the repository root, logged in to (or holding a token for) the Trion Labs Cloudflare account:
 
 ```sh
 node --check public/site.js
@@ -62,21 +62,19 @@ Push changes to `main` in the `trionlabs/tash90` repository. The `Deploy website
 
 Automatic deployment was verified on 3 November 2026. Check the latest run at https://github.com/trionlabs/tash90/actions before assuming an edit is live. A failed deployment leaves the previous version online.
 
-The repository secret `CLOUDFLARE_API_TOKEN` contains an `Individual Workers Editor` token restricted to the `tash90` Worker. Keep this token out of source files. The workflow does not need the existing organisation-wide Cloudflare GitHub integration.
+The repository secret `CLOUDFLARE_API_TOKEN` contains the Trion account token `tash90-github-deploy` (Workers Scripts Write and Account Settings Read on the Trion Labs account). Cloudflare cannot limit it to a single Worker, so it can edit every Worker in that account. Keep this token out of source files. The workflow does not need the existing organisation-wide Cloudflare GitHub integration.
 
-### Domain status
+GitHub Actions minutes are free because the repository is public. While it was private, runs stopped with a billing error before any step ran.
 
-Target domain: https://tash90.org/
+### Domain
 
-Both `tash90.org` and `www.tash90.org` are attached to the Worker. On 3 November 2026, these nameservers were saved at Namecheap and verified after reloading the registrar settings:
+`tash90.org` is registered at Namecheap and its DNS zone is in the Trion Labs Cloudflare account, with nameservers:
 
-- `newt.ns.cloudflare.com`
-- `penny.ns.cloudflare.com`
+- `coraline.ns.cloudflare.com`
+- `ned.ns.cloudflare.com`
 
-Cloudflare activation has been requested. At the last check, public DNS still returned the former Namecheap nameservers, so custom-domain HTTPS is not yet verified. The temporary Workers URL remains live while delegation propagates.
+On 10 November 2026 the Worker and zone moved from a personal Cloudflare account (nameservers `newt`/`penny`) to the Trion Labs account. DNSSEC is not enabled.
 
-The five imported mail-forwarding MX records and SPF TXT record have been preserved. Both default parking records were replaced with Worker custom domains.
-
-Custom domains are managed in Cloudflare, separately from `wrangler.jsonc`.
+The zone holds the five Namecheap mail-forwarding MX records, the SPF TXT record, and the two Worker custom domains (`tash90.org`, `www.tash90.org`). Custom domains are managed in Cloudflare, separately from `wrangler.jsonc`.
 
 Keep account credentials, domain-registration contacts, speaker candidates and private planning notes out of this repository. Only `public/` should be published.
