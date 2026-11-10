@@ -1,91 +1,155 @@
+import { mountMosaic } from "./mosaic.js";
+
 const copy = {
   tr: {
-    pageTitle: "TASH90 — Yapay zekâ güvenliği, İstanbul",
-    description: "İstanbul'da AI safety ve security üzerine bir günlük buluşma hazırlıyoruz. Tarih, program ve katılım bilgileri yakında.",
-    skip: "İçeriğe geç",
-    status: "Bir buluşma hazırlıyoruz",
-    titleOne: "Yapay zekâ",
-    titleTwo: "güvenliği.",
-    titleThree: "İstanbul'da.",
-    intro: "AI safety ve security üzerine bir günlük buluşma. Araştırmacıları, mühendisleri ve bu sorulara kafa yoran insanları bir araya getirmek istiyoruz.",
-    explore: "Ne konuşacağız?",
-    artLabel: "Ortak bir zemin",
-    focusLabel: "Odağımız",
-    focusTitle: "Daha iyi sorular. Daha sağlam güvenceler.",
-    topicOneTitle: "Doğrulama",
-    topicOneBody: "AI sistemleri hakkında verilen sözleri bağımsız olarak nasıl kontrol edebiliriz?",
-    topicTwoTitle: "Güvenlik",
-    topicTwoBody: "Güçlü modelleri ve AI ajanlarını saldırılara ve kötüye kullanıma karşı nasıl koruruz?",
-    topicThreeTitle: "Araştırma ve yönetişim",
-    topicThreeBody: "Riskleri nasıl değerlendirir, bulguları hangi kararlara dönüştürürüz?",
-    announcementLabel: "Etkinlik durumu",
-    soonTitle: "Ayrıntılar yakında.",
-    soonBody: "Tarih, mekân, program ve katılım bilgilerini burada paylaşacağız.",
-    soonTag: "Hazırlık aşamasında",
-    footer: "AI safety & security · İstanbul",
-    backTop: "Başa dön ↑",
+    title: "TASH90 · Yapay zekâ güvenliği buluşması, İstanbul",
+    description: "Araştırmacılar, mühendisler ve yapay zekâ güvenliğine kafa yoran herkes için İstanbul’da bir günlük buluşma.",
+    skip: "İçeriğe geç", navLabel: "Ana menü", langLabel: "Dil", paletteLabel: "Renk",
+    nav1: "Konular", nav2: "Program", nav3: "Bize yazın",
+    h1: "Yapay zekâ güvenliği için İstanbul’da buluşuyoruz",
+    lead: "Bir gün boyunca araştırmacılar, mühendisler ve bu konuya kafa yoran herkes bir arada.",
+    cta: "Bize yazın",
+    topicsH: "Ne konuşacağız?",
+    t1h: "Doğrulama", t1p: "Bir yapay zekâ sistemi hakkında söylenenleri dışarıdan nasıl doğrularız?",
+    t2h: "Model güvenliği", t2p: "Güçlü modelleri ve ajanları saldırılardan ve kötüye kullanımdan nasıl koruruz?",
+    t3h: "Risk ve yönetişim", t3p: "Riskleri nasıl ölçeriz, bulguları nasıl karara dönüştürürüz?",
+    dayH: "Gün nasıl geçecek?", dayL: "Gün boyunca",
+    f1: "Paneller", f1p: "Araştırma, mühendislik ve kamu politikası aynı sahnede.",
+    f2: "Açık kürsü", f2p: "Makalesini ya da süren çalışmasını anlatmak isteyenler için kısa sunumlar.",
+    f3: "Yuvarlak masalar", f3p: "Küçük gruplarda, kayda alınmadan, cevabı henüz belli olmayan sorular üzerine sohbet.",
+    prepL: "Hazırlık", s1: "Konuşmacılar ve sponsorlar", s1t: "şimdi", s2: "Tarih\u00a0ve\u00a0mekân", s2t: "sırada", s3: "Kayıt", s3t: "sonra",
+    spH: "Konuşmacı arıyoruz", spP: "Sunum, panel ya da açık kürsü. Hangisini istediğinizi ve size uyan tarihleri yazın; günü konuşmacılarla birlikte seçiyoruz.",
+    soH: "Sponsor\u00a0arıyoruz", soP: "Desteğiniz konuşmacıları İstanbul’a getirmemizi sağlayacak.",
+    mail: "Bize ulaşın",
+    foot: "Yapay zekâ güvenliği buluşması · İstanbul",
+    turkuaz: "Turkuaz", bizans: "Bizans",
+    pause: "Animasyonu durdur", play: "Animasyonu oynat",
   },
   en: {
-    pageTitle: "TASH90 — AI safety & security, Istanbul",
-    description: "A one-day gathering on AI safety and security in Istanbul is taking shape. Date, programme and attendance details coming soon.",
-    skip: "Skip to content",
-    status: "A gathering is taking shape",
-    titleOne: "AI safety.",
-    titleTwo: "AI security.",
-    titleThree: "In Istanbul.",
-    intro: "A one-day gathering on AI safety and security. We want to bring together researchers, engineers and people thinking seriously about these questions.",
-    explore: "What will we discuss?",
-    artLabel: "Common ground",
-    focusLabel: "Our focus",
-    focusTitle: "Better questions. Stronger assurances.",
-    topicOneTitle: "Verification",
-    topicOneBody: "How can we independently check the claims made about AI systems?",
-    topicTwoTitle: "Security",
-    topicTwoBody: "How do we protect powerful models and AI agents from attacks and misuse?",
-    topicThreeTitle: "Research & governance",
-    topicThreeBody: "How do we evaluate risks and turn the evidence into decisions?",
-    announcementLabel: "Event status",
-    soonTitle: "Details coming soon.",
-    soonBody: "We'll share the date, venue, programme and attendance details here.",
-    soonTag: "In preparation",
-    footer: "AI safety & security · Istanbul",
-    backTop: "Back to top ↑",
+    title: "TASH90 · An AI safety gathering in Istanbul",
+    description: "A one-day gathering in Istanbul for researchers, engineers and anyone who thinks hard about AI safety.",
+    skip: "Skip to content", navLabel: "Main menu", langLabel: "Language", paletteLabel: "Colour",
+    nav1: "Topics", nav2: "Programme", nav3: "Write to us",
+    h1: "An AI safety gathering in Istanbul",
+    lead: "One day for researchers, engineers and anyone who thinks hard about AI safety.",
+    cta: "Write to us",
+    topicsH: "What we’ll cover",
+    t1h: "Verification", t1p: "How do we check claims about an AI system from the outside?",
+    t2h: "Model security", t2p: "How do we protect powerful models and agents from attacks and misuse?",
+    t3h: "Risk and governance", t3p: "How do we measure risk, and turn findings into decisions?",
+    dayH: "How the day works", dayL: "Through the day",
+    f1: "Panels", f1p: "Research, engineering and public policy on one stage.",
+    f2: "Open floor", f2p: "Short talks for anyone who wants to present a paper or work in progress.",
+    f3: "Round tables", f3p: "Small groups, off the record, on questions without a settled answer.",
+    prepL: "Preparation", s1: "Speakers and sponsors", s1t: "now", s2: "Date and venue", s2t: "next", s3: "Registration", s3t: "later",
+    spH: "Speak at TASH90", spP: "A talk, a panel or the open floor. Tell us which, and the dates that suit you; we’ll pick the day with our speakers.",
+    soH: "Sponsor TASH90", soP: "Your support brings our speakers to Istanbul.",
+    mail: "Contact us",
+    foot: "An AI safety gathering · Istanbul",
+    turkuaz: "Turquoise", bizans: "Byzantine",
+    pause: "Pause animation", play: "Play animation",
   },
 };
 
-const controls = document.querySelector(".languages");
-const buttons = controls.querySelectorAll("button");
+const PALETTES = ["turkuaz", "bizans"];
+const BRAND = { turkuaz: "#0a6685", bizans: "#1a2a5e" };
+const params = new URL(location.href).searchParams;
 
-function setLanguage(language) {
-  const text = copy[language];
-  document.documentElement.lang = language;
-  document.title = text.pageTitle;
-  document.querySelector('meta[name="description"]').content = text.description;
-  document.querySelector('meta[property="og:title"]').content = text.pageTitle;
-  document.querySelector('meta[property="og:description"]').content = text.description;
-  document.querySelector('meta[property="og:locale"]').content = language === "tr" ? "tr_TR" : "en_GB";
-  document.querySelectorAll("[data-copy]").forEach((element) => {
-    element.textContent = text[element.dataset.copy];
-  });
-  document.querySelectorAll("[data-label]").forEach((element) => {
-    element.setAttribute("aria-label", text[element.dataset.label]);
-  });
-  buttons.forEach((button) => {
-    button.setAttribute("aria-pressed", String(button.dataset.lang === language));
-  });
+// Language: ?lang= wins; otherwise Turkish for visitors in Türkiye's time zone or with a Turkish browser, English for everyone else.
+function pickLanguage() {
+  const asked = params.get("lang");
+  if (asked === "tr" || asked === "en") return asked;
+  let zone = "";
+  try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch {}
+  const browser = (navigator.languages && navigator.languages[0]) || navigator.language || "";
+  return zone === "Europe/Istanbul" || /^tr\b/i.test(browser) ? "tr" : "en";
 }
 
-const initialLanguage = new URL(window.location.href).searchParams.get("lang");
-setLanguage(initialLanguage === "en" ? "en" : "tr");
-controls.hidden = false;
+const state = {
+  lang: pickLanguage(),
+  palette: PALETTES.includes(params.get("renk")) ? params.get("renk") : "turkuaz",
+  paused: false,
+};
+let stops = [];
 
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const language = button.dataset.lang;
-    setLanguage(language);
-    const url = new URL(window.location.href);
-    if (language === "en") url.searchParams.set("lang", "en");
-    else url.searchParams.delete("lang");
-    window.history.replaceState(null, "", url);
+// Choices live in the URL (no storage), so a shared link opens the same way.
+function remember(key, value, fallback) {
+  const url = new URL(location.href);
+  if (value === fallback) url.searchParams.delete(key);
+  else url.searchParams.set(key, value);
+  history.replaceState(null, "", url);
+}
+
+function applyCopy() {
+  const text = copy[state.lang];
+  document.documentElement.lang = state.lang;
+  document.title = text.title;
+  document.querySelector('meta[name="description"]').content = text.description;
+  document.querySelector('meta[property="og:title"]').content = text.title;
+  document.querySelector('meta[property="og:description"]').content = text.description;
+  document.querySelector('meta[property="og:locale"]').content = state.lang === "tr" ? "tr_TR" : "en_GB";
+  document.querySelectorAll("[data-copy]").forEach((el) => {
+    const key = el.dataset.copy === "pause" ? (state.paused ? "play" : "pause") : el.dataset.copy;
+    el.textContent = text[key];
   });
+  document.querySelectorAll("[data-label]").forEach((el) => el.setAttribute("aria-label", text[el.dataset.label]));
+  document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === state.lang)));
+}
+
+function mountArt() {
+  stops.forEach((stop) => stop());
+  stops = [...document.querySelectorAll("canvas[data-art]")].map((canvas) =>
+    mountMosaic(canvas, canvas.dataset.art, {
+      palette: state.palette,
+      glyph: canvas.dataset.glyph,
+      order: Number(canvas.dataset.order || 0),
+      still: state.paused,
+    }),
+  );
+}
+
+function applyPalette() {
+  document.documentElement.dataset.palette = state.palette;
+  document.querySelector('meta[name="theme-color"]').content = BRAND[state.palette];
+  document.querySelectorAll("button[data-palette]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.palette === state.palette)));
+}
+
+applyPalette();
+applyCopy();
+mountArt();
+document.querySelectorAll(".switch").forEach((el) => { el.hidden = false; });
+// With reduced motion the scene is already still, so the pause control would do nothing; follow the setting live.
+const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+const syncPause = () => {
+  const button = document.querySelector(".pause");
+  if (reduced.matches && document.activeElement === button) document.getElementById("main").focus();
+  button.hidden = reduced.matches;
+};
+syncPause();
+reduced.addEventListener("change", syncPause);
+
+document.querySelectorAll("[data-lang]").forEach((button) => {
+  button.addEventListener("click", () => {
+    state.lang = button.dataset.lang;
+    remember("lang", state.lang, null);
+    applyCopy();
+  });
+});
+
+document.querySelectorAll("button[data-palette]").forEach((button) => {
+  button.addEventListener("click", () => {
+    if (state.palette === button.dataset.palette) return;
+    state.palette = button.dataset.palette;
+    remember("renk", state.palette, "turkuaz");
+    applyPalette();
+    mountArt();
+  });
+});
+
+// WCAG 2.2.2: the moving water can be stopped and started again.
+const pause = document.querySelector(".pause");
+pause.addEventListener("click", () => {
+  state.paused = !state.paused;
+  stops.forEach((stop) => stop.hold && stop.hold(state.paused));
+  applyCopy();
 });

@@ -1,101 +1,130 @@
 <!doctype html>
-<html lang="tr">
+<html lang="tr" data-palette="turkuaz">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f4f1e9">
-    <title>TASH90 — Yapay zekâ güvenliği, İstanbul</title>
-    <meta name="description" content="İstanbul'da AI safety ve security üzerine bir günlük buluşma hazırlıyoruz. Tarih, program ve katılım bilgileri yakında.">
+    <meta name="theme-color" content="#0a6685">
+    <title>TASH90 · Yapay zekâ güvenliği buluşması, İstanbul</title>
+    <meta name="description" content="Araştırmacılar, mühendisler ve yapay zekâ güvenliğine kafa yoran herkes için İstanbul’da bir günlük buluşma.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="TASH90">
-    <meta property="og:title" content="TASH90 — Yapay zekâ güvenliği, İstanbul">
-    <meta property="og:description" content="Araştırma, mühendislik ve yönetişim. İstanbul'da AI safety ve security üzerine bir buluşma. Ayrıntılar yakında.">
+    <meta property="og:title" content="TASH90 · Yapay zekâ güvenliği buluşması, İstanbul">
+    <meta property="og:description" content="Araştırmacılar, mühendisler ve yapay zekâ güvenliğine kafa yoran herkes için İstanbul’da bir günlük buluşma.">
     <meta property="og:url" content="https://tash90.org/">
     <meta property="og:locale" content="tr_TR">
     <link rel="canonical" href="https://tash90.org/">
+    <link rel="alternate" hreflang="tr" href="https://tash90.org/?lang=tr">
+    <link rel="alternate" hreflang="en" href="https://tash90.org/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://tash90.org/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="/fonts/funnel-display-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/styles.css">
     <script src="/site.js" type="module"></script>
   </head>
   <body>
     <a class="skip-link" href="#main" data-copy="skip">İçeriğe geç</a>
-    <div class="page-shell">
-      <header class="site-header">
-        <a class="wordmark" href="/" aria-label="TASH90">TASH<span>90</span><span class="brand-dot" aria-hidden="true"></span></a>
-        <div class="header-end">
-          <span class="location">İstanbul, Türkiye</span>
-          <div class="languages" aria-label="Dil / Language" role="group" hidden>
-            <button type="button" data-lang="tr" lang="tr" aria-label="Türkçe" aria-pressed="true">TR</button>
-            <span aria-hidden="true">/</span>
-            <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+
+    <header class="hero">
+      <canvas class="hero-art" data-art="hero" aria-hidden="true"></canvas>
+      <div class="wrap top">
+        <a class="wordmark" href="/" aria-label="TASH90">
+          <svg class="mark" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20"><path class="mark-ground" d="M0 7h6v6H0zM14 7h6v6h-6zM0 14h6v6H0zM14 14h6v6h-6z"/><path class="mark-figure" d="M0 0h6v6H0zM7 0h6v6H7zM14 0h6v6h-6zM7 7h6v6H7zM7 14h6v6H7z"/></svg>
+          TASH90
+        </a>
+        <nav class="site-nav" aria-label="Ana menü" data-label="navLabel">
+          <a class="nav-extra" href="#konular" data-copy="nav1">Konular</a>
+          <a class="nav-extra" href="#program" data-copy="nav2">Program</a>
+          <a class="nav-cta" href="#yaz" data-copy="nav3">Bize yazın</a>
+          <span class="switch" role="group" aria-label="Dil" data-label="langLabel" hidden>
+            <button type="button" data-lang="tr" lang="tr" aria-pressed="true">TR</button>
+            <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+          </span>
+        </nav>
+      </div>
+      <div class="wrap hero-copy" id="ust">
+        <h1 data-copy="h1">Yapay zekâ güvenliği&nbsp;için İstanbul’da buluşuyoruz</h1>
+        <p class="lead" data-copy="lead">Bir gün boyunca araştırmacılar, mühendisler ve bu konuya kafa yoran herkes bir arada.</p>
+        <a class="button cta" href="#yaz" data-copy="cta">Bize yazın</a>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="wrap section" id="konular" aria-labelledby="konular-baslik">
+        <h2 id="konular-baslik" data-copy="topicsH">Ne konuşacağız?</h2>
+        <div class="topics">
+          <article>
+            <canvas class="emblem" data-art="emblem" data-glyph="check" data-order="0" aria-hidden="true"></canvas>
+            <h3 data-copy="t1h">Doğrulama</h3>
+            <p data-copy="t1p">Bir yapay zekâ sistemi hakkında söylenenleri dışarıdan nasıl doğrularız?</p>
+          </article>
+          <article>
+            <canvas class="emblem" data-art="emblem" data-glyph="lock" data-order="1" aria-hidden="true"></canvas>
+            <h3 data-copy="t2h">Model güvenliği</h3>
+            <p data-copy="t2p">Güçlü modelleri ve ajanları saldırılardan ve kötüye kullanımdan nasıl koruruz?</p>
+          </article>
+          <article>
+            <canvas class="emblem" data-art="emblem" data-glyph="scales" data-order="2" aria-hidden="true"></canvas>
+            <h3 data-copy="t3h">Risk ve yönetişim</h3>
+            <p data-copy="t3p">Riskleri nasıl ölçeriz, bulguları nasıl karara dönüştürürüz?</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="wrap section section-tight" id="program" aria-labelledby="program-baslik">
+        <h2 id="program-baslik" data-copy="dayH">Gün nasıl geçecek?</h2>
+        <div class="split">
+          <div class="wide">
+            <h3 class="meta label" data-copy="dayL">Gün boyunca</h3>
+            <div class="row"><span data-copy="f1">Paneller</span><span class="row-text" data-copy="f1p">Araştırma, mühendislik ve kamu politikası aynı sahnede.</span></div>
+            <div class="row"><span data-copy="f2">Açık kürsü</span><span class="row-text" data-copy="f2p">Makalesini ya da süren çalışmasını anlatmak isteyenler için kısa sunumlar.</span></div>
+            <div class="row"><span data-copy="f3">Yuvarlak masalar</span><span class="row-text" data-copy="f3p">Küçük gruplarda, kayda alınmadan, cevabı henüz belli olmayan sorular üzerine sohbet.</span></div>
+          </div>
+          <div class="narrow">
+            <h3 class="meta label" data-copy="prepL">Hazırlık</h3>
+            <ol class="steps">
+              <li><a href="#yaz" aria-current="step"><span class="dot dot-now" aria-hidden="true"></span><span data-copy="s1">Konuşmacılar ve sponsorlar</span><span class="meta" data-copy="s1t">şimdi</span></a></li>
+              <li class="later"><span class="dot" aria-hidden="true"></span><span data-copy="s2">Tarih&nbsp;ve&nbsp;mekân</span><span class="meta" data-copy="s2t">sırada</span></li>
+              <li class="later"><a href="#yaz"><span class="dot" aria-hidden="true"></span><span data-copy="s3">Kayıt</span><span class="meta" data-copy="s3t">sonra</span></a></li>
+            </ol>
           </div>
         </div>
-      </header>
+      </section>
 
-      <main id="main">
-        <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-copy">
-            <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span><span data-copy="status">Bir buluşma hazırlıyoruz</span></p>
-            <h1 id="hero-title"><span data-copy="titleOne">Yapay zekâ</span><span data-copy="titleTwo">güvenliği.</span><em data-copy="titleThree">İstanbul'da.</em></h1>
-            <p class="intro" data-copy="intro">AI safety ve security üzerine bir günlük buluşma. Araştırmacıları, mühendisleri ve bu sorulara kafa yoran insanları bir araya getirmek istiyoruz.</p>
-            <a class="text-link" href="#topics"><span data-copy="explore">Ne konuşacağız?</span><span aria-hidden="true">↘</span></a>
+      <section class="wrap section section-tight write" id="yaz" aria-labelledby="yaz-baslik">
+        <div class="split ruled">
+          <div class="wide">
+            <h2 id="yaz-baslik" data-copy="spH">Konuşmacı arıyoruz</h2>
+            <p data-copy="spP">Sunum, panel ya da açık kürsü. Hangisini istediğinizi ve size uyan tarihleri yazın; günü konuşmacılarla birlikte seçiyoruz.</p>
           </div>
-
-          <div class="hero-art" aria-hidden="true">
-            <svg class="bridge" viewBox="0 0 480 530" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#d9dfd7" stroke-width="1"/></pattern>
-                <clipPath id="window"><rect x="0" y="0" width="480" height="530" rx="240"/></clipPath>
-              </defs>
-              <g clip-path="url(#window)">
-                <rect width="480" height="530" fill="#e1e7dc"/>
-                <rect width="480" height="530" fill="url(#grid)"/>
-                <circle cx="351" cy="139" r="54" fill="#b9472d"/>
-                <path d="M0 370C100 335 180 405 270 370S390 335 480 370V530H0Z" fill="#c8d4c5"/>
-                <path d="M0 415C100 380 180 450 270 415S390 380 480 415" fill="none" stroke="#91a89a"/>
-                <path d="M0 450C100 415 180 485 270 450S390 415 480 450" fill="none" stroke="#91a89a"/>
-                <path d="M-20 260H500M111 167V374M369 167V374" fill="none" stroke="#1c3834" stroke-width="9"/>
-                <path d="M-20 248Q45 230 111 170Q240 320 369 170Q435 230 500 248" fill="none" stroke="#1c3834" stroke-width="3"/>
-                <path d="M139 198V260M167 221V260M195 237V260M223 244V260M251 245V260M279 238V260M307 225V260M335 204V260M27 235V260M55 220V260M83 196V260M397 196V260M425 220V260M453 235V260" fill="none" stroke="#1c3834" stroke-width="1.5"/>
-                <text x="236" y="354" text-anchor="middle" fill="#1c3834" font-family="Georgia, serif" font-size="76" letter-spacing="-6">90</text>
-              </g>
-            </svg>
-            <div class="art-caption"><span>41° N · 29° E</span><span data-copy="artLabel">Ortak bir zemin</span></div>
+          <div class="narrow">
+            <h2 data-copy="soH">Sponsor&nbsp;arıyoruz</h2>
+            <p data-copy="soP">Desteğiniz konuşmacıları İstanbul’a getirmemizi sağlayacak.</p>
           </div>
-        </section>
+        </div>
+        <a class="mail" href="mailto:contact@tash90.org" data-copy="mail">Bize ulaşın</a>
+      </section>
+    </main>
 
-        <section id="topics" class="topics" aria-labelledby="topics-title">
-          <div class="section-intro">
-            <p class="eyebrow" data-copy="focusLabel">Odağımız</p>
-            <h2 id="topics-title" data-copy="focusTitle">Daha iyi sorular. Daha sağlam güvenceler.</h2>
+    <footer class="site-footer">
+      <canvas class="foot-art" data-art="strip" aria-hidden="true"></canvas>
+      <div class="wrap foot">
+        <div>
+          <div class="foot-mark">
+            <svg class="mark" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20"><path class="mark-ground" d="M0 7h6v6H0zM14 7h6v6h-6zM0 14h6v6H0zM14 14h6v6h-6z"/><path class="mark-figure" d="M0 0h6v6H0zM7 0h6v6H7zM14 0h6v6h-6zM7 7h6v6H7zM7 14h6v6H7z"/></svg>
+            TASH90
           </div>
-          <div class="topic-grid">
-            <article>
-              <span class="topic-number" aria-hidden="true">01 /</span>
-              <h3 data-copy="topicOneTitle">Doğrulama</h3>
-              <p data-copy="topicOneBody">AI sistemleri hakkında verilen sözleri bağımsız olarak nasıl kontrol edebiliriz?</p>
-            </article>
-            <article>
-              <span class="topic-number" aria-hidden="true">02 /</span>
-              <h3 data-copy="topicTwoTitle">Güvenlik</h3>
-              <p data-copy="topicTwoBody">Güçlü modelleri ve AI ajanlarını saldırılara ve kötüye kullanıma karşı nasıl koruruz?</p>
-            </article>
-            <article>
-              <span class="topic-number" aria-hidden="true">03 /</span>
-              <h3 data-copy="topicThreeTitle">Araştırma ve yönetişim</h3>
-              <p data-copy="topicThreeBody">Riskleri nasıl değerlendirir, bulguları hangi kararlara dönüştürürüz?</p>
-            </article>
-          </div>
-        </section>
-
-        <aside class="announcement" aria-label="Etkinlik durumu" data-label="announcementLabel">
-          <span class="announcement-mark" aria-hidden="true">↗</span>
-          <div><h2 data-copy="soonTitle">Ayrıntılar yakında.</h2><p data-copy="soonBody">Tarih, mekân, program ve katılım bilgilerini burada paylaşacağız.</p></div>
-          <span class="soon-tag" data-copy="soonTag">Hazırlık aşamasında</span>
-        </aside>
-      </main>
-
-      <footer><span class="footer-brand">TASH90</span><span data-copy="footer">AI safety & security · İstanbul</span><a href="#main" data-copy="backTop">Başa dön ↑</a></footer>
-    </div>
+          <p data-copy="foot">Yapay zekâ güvenliği buluşması · İstanbul</p>
+        </div>
+        <div class="foot-end">
+          <a href="mailto:contact@tash90.org" data-copy="mail">Bize ulaşın</a>
+          <span class="switch" role="group" aria-label="Renk" data-label="paletteLabel" hidden>
+            <button type="button" data-palette="turkuaz" aria-pressed="true" data-copy="turkuaz">Turkuaz</button>
+            <button type="button" data-palette="bizans" aria-pressed="false" data-copy="bizans">Bizans</button>
+          </span>
+          <button type="button" class="pause" data-copy="pause" hidden>Animasyonu durdur</button>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

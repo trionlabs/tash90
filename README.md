@@ -7,11 +7,22 @@ Private source repository: `trionlabs/tash90`. The files in `public/` are intend
 ## Edit the page
 
 - `public/index.html`: structure and Turkish fallback copy.
-- `public/site.js`: Turkish and English text. Keep the Turkish copy consistent with the HTML fallback.
-- `public/styles.css`: layout, colours and responsive styles.
+- `public/site.js`: Turkish and English text, language and colour-mode logic. Keep the Turkish copy consistent with the HTML fallback.
+- `public/mosaic.js`: the tile mosaic drawn on the canvases (the Bosphorus hero, the footer strip and the topic emblems), and both colour palettes.
+- `public/styles.css`: layout, both colour modes and responsive styles.
+- `public/fonts/`: self-hosted Funnel Display, Inter and IBM Plex Mono (Latin and Latin Extended subsets). Their licence, the SIL Open Font License 1.1, is in `public/fonts/OFL.txt`.
 - `public/_headers`: hosting response headers.
 
-The site has no application dependencies, analytics, cookies, forms or external fonts. Language selection uses the URL (`?lang=en`), not browser storage. The Turkish page remains readable without JavaScript.
+The site has no application dependencies, analytics, cookies, forms or external fonts. The Turkish page remains readable without JavaScript.
+
+The contact link on the page goes to contact@tash90.org, which Cloudflare Email Routing forwards (set up separately, outside this repository).
+
+### Language and colour mode
+
+- Language: `?lang=tr` or `?lang=en` wins. Otherwise visitors in the `Europe/Istanbul` time zone or with a Turkish browser get Turkish; everyone else gets English. This is decided in the browser; no location data is sent anywhere.
+- Colour mode: Turkuaz (default) or Bizans, switched in the footer and kept as `?renk=bizans`.
+- Both choices live in the URL, not browser storage, so a shared link opens the same way.
+- The animation stops for visitors who prefer reduced motion, and the footer has a pause button.
 
 ## Preview locally
 
@@ -27,6 +38,7 @@ Check JavaScript syntax with:
 
 ```sh
 node --check public/site.js
+node --check public/mosaic.js
 ```
 
 ## Hosting
