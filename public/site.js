@@ -22,7 +22,7 @@ const copy = {
     soH: "Sponsor\u00a0arıyoruz", soP: "Desteğiniz konuşmacıları İstanbul’a getirmemizi sağlayacak.",
     mail: "Bize ulaşın",
     foot: "Yapay zekâ güvenliği buluşması · İstanbul",
-    turkuaz: "Turkuaz", bizans: "Bizans",
+    toLight: "Açık tema", toDark: "Koyu tema",
     pause: "Animasyonu durdur", play: "Animasyonu oynat",
   },
   en: {
@@ -46,13 +46,12 @@ const copy = {
     soH: "Sponsor TASH90", soP: "Your support brings our speakers to Istanbul.",
     mail: "Contact us",
     foot: "An AI safety gathering · Istanbul",
-    turkuaz: "Turquoise", bizans: "Byzantine",
+    toLight: "Light theme", toDark: "Dark theme",
     pause: "Pause animation", play: "Play animation",
   },
 };
 
-const PALETTES = ["turkuaz", "bizans"];
-const BRAND = { turkuaz: "#0a6685", bizans: "#1a2a5e" };
+const BRAND = { light: "#0a6685", dark: "#0d1430" };
 const params = new URL(location.href).searchParams;
 
 // Language: ?lang= wins; otherwise Turkish for visitors in Türkiye's time zone or with a Turkish browser, English for everyone else.
@@ -67,7 +66,7 @@ function pickLanguage() {
 
 const state = {
   lang: pickLanguage(),
-  palette: PALETTES.includes(params.get("renk")) ? params.get("renk") : "turkuaz",
+  theme: params.get("theme") === "dark" ? "dark" : "light",
   paused: false,
 };
 let stops = [];
@@ -94,13 +93,14 @@ function applyCopy() {
   });
   document.querySelectorAll("[data-label]").forEach((el) => el.setAttribute("aria-label", text[el.dataset.label]));
   document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === state.lang)));
+  themeLabel();
 }
 
 function mountArt() {
   stops.forEach((stop) => stop());
   stops = [...document.querySelectorAll("canvas[data-art]")].map((canvas) =>
     mountMosaic(canvas, canvas.dataset.art, {
-      palette: state.palette,
+      palette: state.theme,
       glyph: canvas.dataset.glyph,
       order: Number(canvas.dataset.order || 0),
       still: state.paused,
@@ -108,16 +108,24 @@ function mountArt() {
   );
 }
 
-function applyPalette() {
-  document.documentElement.dataset.palette = state.palette;
-  document.querySelector('meta[name="theme-color"]').content = BRAND[state.palette];
-  document.querySelectorAll("button[data-palette]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.palette === state.palette)));
+function applyTheme() {
+  document.documentElement.dataset.theme = state.theme;
+  document.querySelector('meta[name="theme-color"]').content = BRAND[state.theme];
+  themeLabel();
 }
 
-applyPalette();
+// The theme button shows, in its tesserae, the colours it switches to; its name says the same.
+function themeLabel() {
+  const text = copy[state.lang][state.theme === "light" ? "toDark" : "toLight"];
+  const button = document.querySelector(".theme");
+  button.setAttribute("aria-label", text);
+  button.title = text;
+}
+
+applyTheme();
 applyCopy();
 mountArt();
-document.querySelectorAll(".switch").forEach((el) => { el.hidden = false; });
+document.querySelectorAll(".switch, .theme").forEach((el) => { el.hidden = false; });
 // With reduced motion the scene is already still, so the pause control would do nothing; follow the setting live.
 const reduced = matchMedia("(prefers-reduced-motion: reduce)");
 const syncPause = () => {
@@ -136,14 +144,11 @@ document.querySelectorAll("[data-lang]").forEach((button) => {
   });
 });
 
-document.querySelectorAll("button[data-palette]").forEach((button) => {
-  button.addEventListener("click", () => {
-    if (state.palette === button.dataset.palette) return;
-    state.palette = button.dataset.palette;
-    remember("renk", state.palette, "turkuaz");
-    applyPalette();
-    mountArt();
-  });
+document.querySelector(".theme").addEventListener("click", () => {
+  state.theme = state.theme === "light" ? "dark" : "light";
+  remember("theme", state.theme, "light");
+  applyTheme();
+  mountArt();
 });
 
 // WCAG 2.2.2: the moving water can be stopped and started again.

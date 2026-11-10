@@ -1,12 +1,12 @@
 // TASH90 mosaic: the Bosphorus looking south, laid in tesserae on a canvas. Classic script, no imports.
 // Scene is composed on a 240-column grid; narrow screens crop towards the bridge, wide ones extend water and shores.
 var M_PAL = {
-  turkuaz: { hex: ['#063a4d', '#0a6685', '#1380a6', '#3fa3c6', '#7cc4dc', '#b4dfec', '#e1f3f8', '#fefefe', '#fefefe', '#1380a6', '#e1f3f8'],
+  light: { hex: ['#063a4d', '#0a6685', '#1380a6', '#3fa3c6', '#7cc4dc', '#b4dfec', '#e1f3f8', '#fefefe', '#fefefe', '#1380a6', '#e1f3f8'],
     glyph: { '#': 0, w: 6, b: 3, f: 7 }, far: 1, lit: 7, glint: 7, glow: 6, flood: 5, dome: 4, panel: { frame: 5, field: 6, ground: 5, figure: 1 } },
-  bizans: { hex: ['#0d1430', '#1a2a5e', '#24408a', '#3559a8', '#5b7cc0', '#9fb2dc', '#e3e6ef', '#f8f3e6', '#e0b955', '#94585e', '#e6d8b2', '#2e7d6e'],
+  dark: { hex: ['#0d1430', '#1a2a5e', '#24408a', '#3559a8', '#5b7cc0', '#9fb2dc', '#e3e6ef', '#f8f3e6', '#e0b955', '#94585e', '#e6d8b2', '#2e7d6e'],
     glyph: { '#': 0, w: 7, b: 8, f: 8 }, far: 9, lit: 8, glint: 8, glow: 8, flood: 6, dome: 9,
     // Byzantine tesserae of other stones: verdigris in the water, gold flecks in the moon's haze, rose along the horizon.
-    accents: { water: [11, 0.035], haze: [8, 0.018], horizon: [9, 0.014] }, panel: { frame: 4, field: 10, ground: 10, figure: 1 } }
+    accents: { water: [11, 0.035], haze: [8, 0.018], horizon: [9, 0.014] }, paper: 0, panel: { frame: 4, field: 10, ground: 1, figure: 8 } }
 };
 // Istanbul city ferries: double-ended, two decks of windows, one funnel with a dark cap, a mast at each end.
 var M_SHIP = {
@@ -52,7 +52,7 @@ function mBlank(cols, rows) {
   var n = cols * rows, P = cols + 61;
   return { cols: cols, rows: rows, P: P, lvl: new Float32Array(n).fill(1), solid: new Int8Array(n).fill(-1), idx: new Uint8Array(n),
     front: new Int16Array(n), tex: new Float32Array(rows).fill(1), off: new Int16Array(rows), every: new Uint8Array(rows),
-    thr: new Float32Array(rows * P), top: 0, hy: -1, accents: null, glitter: [], ships: [], gulls: [], lights: [], cable: [], icon: [], focus: null };
+    thr: new Float32Array(rows * P), top: 0, hy: -1, accents: null, paper: 7, glitter: [], ships: [], gulls: [], lights: [], cable: [], icon: [], focus: null };
 }
 
 // Tones sit in calm bands; only the middle of each step mixes the two neighbouring tints.
@@ -68,7 +68,7 @@ function mQuant(s, c, r) {
   }
   var p = ((c + s.off[r]) % s.P + s.P) % s.P, t = s.thr[r * s.P + p];
   var k = mClamp(Math.floor(l) + (mClamp((f - 0.3) / 0.4, 0, 1) > t ? 1 : 0), 0, 7);
-  // A few tesserae of a second hue in the water, moving with its runs (Bizans only).
+  // A few tesserae of a second hue in the water, moving with its runs (dark theme only).
   // Verdigris gathers in the open water and thins out towards the far shore and the foam.
   if (s.accents && r > s.hy + 3 && k >= 1 && k <= 3 && mHash(Math.floor(p / 2), r, 23) < s.accents.water[1] * 1.6 * Math.sin(Math.PI * mClamp((r - s.hy - 3) / (s.rows - s.hy - 18), 0, 1))) return s.accents.water[0];
   return k;
@@ -76,10 +76,11 @@ function mQuant(s, c, r) {
 
 // Rows melt into paper: tiles thin out, then the grout goes.
 function mMelt(s, r, fade) {
+  var P = s.paper;
   for (var c = 0; c < s.cols; c++) {
     var i = r * s.cols + c, e = fade + (mHash(Math.floor(c / 3), r, 8) - 0.5) * 0.66 + 0.1 * Math.sin(c / 6);
-    s.lvl[i] += (7 - s.lvl[i]) * mClamp(e * 1.5, 0, 1);
-    if (e > 0.75) s.solid[i] = 7;
+    s.lvl[i] += (P - s.lvl[i]) * mClamp(e * 1.5, 0, 1);
+    if (e > 0.75) s.solid[i] = P;
   }
 }
 
@@ -100,6 +101,7 @@ function mHero(cols, rows, pal) {
   s.top = Math.max(0, hy - 46);
   s.hy = hy;
   s.accents = pal.accents || null;
+  if (pal.paper != null) s.paper = pal.paper;
   s.focus = [mx + ox, my];
   s.thr = mRuns(rows, s.P, function (r, u) { return r < hy ? 3 + Math.floor(u * 9) : 2 + Math.floor(u * (3 + (r - hy) * 0.12)); });
   for (var r = 0; r < rows; r++) s.tex[r] = Math.min(mClamp((r - s.top) / 8, 0, 1), mClamp((rows - 2 - r) / 9, 0, 1));
@@ -140,7 +142,7 @@ function mHero(cols, rows, pal) {
   }
 
   // Far right: the historic peninsula with Hagia Sophia (its ring of dome windows lights up), and the Galata Tower.
-  // A dark body and drum; the dome one step lighter (Turkuaz) or in muted rose (Bizans).
+  // A dark body and drum; the dome light against the light theme's haze, muted rose in the dark theme.
   art(M_HAGIA, 205, hy - 3, 0);
   for (var dr = 0; dr < 3; dr++) for (var dq = 3; dq < 14; dq++) if (M_HAGIA[1 + dr][dq] === '#') put(205 + dq, hy - 3 - 6 + 1 + dr, pal.dome);
   var G2 = F === 9 ? 1 : F;
@@ -213,7 +215,7 @@ function mHero(cols, rows, pal) {
   }
 
   for (r = rows - MELT; r < rows; r++) mMelt(s, r, (r - (rows - MELT)) / (MELT - 3));
-  for (var i = (rows - 3) * cols; i < rows * cols; i++) s.solid[i] = 7;
+  for (var i = (rows - 3) * cols; i < rows * cols; i++) s.solid[i] = s.paper;
   for (r = hy + 1; r < rows - MELT; r++) {
     w = 2.5 + (r - hy) * 0.42 + 1.5;
     for (c = 0; c < cols; c++) if (Math.abs(c - ox - mx) < w && s.solid[r * cols + c] < 0) s.glitter.push(r * cols + c);
@@ -224,8 +226,9 @@ function mHero(cols, rows, pal) {
 }
 
 // The footer strip: the same water rising out of the paper and settling into the footer colour.
-function mStrip(cols, rows) {
+function mStrip(cols, rows, pal) {
   var s = mBlank(cols, rows);
+  if (pal && pal.paper != null) s.paper = pal.paper;
   s.thr = mRuns(rows, s.P, function (r, u) { return 2 + Math.floor(u * 6); });
   for (var r = 0; r < rows; r++) {
     s.tex[r] = Math.min(mClamp(r / 9, 0, 1), mClamp((rows - 3 - r) / 8, 0, 1));
@@ -233,7 +236,7 @@ function mStrip(cols, rows) {
     s.every[r] = r > 14 && r < rows - 8 ? 6 + Math.floor(mHash(r, 0, 13) * 10) : 0;
   }
   for (r = 0; r < 15; r++) mMelt(s, r, (15 - r) / 13);
-  for (var i = 0; i < 3 * cols; i++) s.solid[i] = 7;
+  for (var i = 0; i < 3 * cols; i++) s.solid[i] = s.paper;
   return s;
 }
 
@@ -251,7 +254,7 @@ function mEmblem(cols, rows, glyph, P) {
 
 function mountMosaic(canvas, kind, opts) {
   opts = opts || {};
-  var pal = M_PAL[opts.palette] || M_PAL.turkuaz, RGB = pal.hex.map(mRgb), ink = RGB[0];
+  var pal = M_PAL[opts.palette] || M_PAL.light, RGB = pal.hex.map(mRgb), ink = RGB[0];
   var ctx = canvas.getContext('2d', { alpha: false });
   var mq = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : null;
   var calm = !!opts.still || !!(mq && mq.matches);
@@ -381,10 +384,10 @@ function mountMosaic(canvas, kind, opts) {
     var cols = kind === 'emblem' ? 11 : Math.ceil(canvas.width / T), rows = kind === 'emblem' ? 11 : Math.ceil(canvas.height / T);
     if (kind === 'emblem') { canvas.style.width = canvas.style.height = 11 * T / dpr + 'px'; canvas.width = canvas.height = 11 * T; }
     if (!cols || !rows) return;
-    s = kind === 'strip' ? mStrip(cols, rows) : kind === 'emblem' ? mEmblem(cols, rows, opts.glyph, pal.panel) : mHero(cols, rows, pal);
+    s = kind === 'strip' ? mStrip(cols, rows, pal) : kind === 'emblem' ? mEmblem(cols, rows, opts.glyph, pal.panel) : mHero(cols, rows, pal);
     lit.clear(); sweep = []; step = 0;
     for (var i = 0; i < s.idx.length; i++) s.idx[i] = mQuant(s, i % cols, (i / cols) | 0);
-    ctx.fillStyle = css(RGB[kind === 'hero' ? 1 : 7]);
+    ctx.fillStyle = css(RGB[kind === 'hero' ? 1 : pal.paper == null ? 7 : pal.paper]);
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     if (!first || calm || !s.focus) {
       revealed = true;

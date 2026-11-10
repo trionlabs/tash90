@@ -20,7 +20,7 @@ The contact link on the page goes to contact@tash90.org, which Cloudflare Email 
 ### Language and colour mode
 
 - Language: `?lang=tr` or `?lang=en` wins. Otherwise visitors in the `Europe/Istanbul` time zone or with a Turkish browser get Turkish; everyone else gets English. This is decided in the browser; no location data is sent anywhere.
-- Colour mode: Turkuaz (default) or Bizans, switched in the footer and kept as `?renk=bizans`.
+- Theme: light (turquoise, default) or dark (Byzantine lapis and gold), switched by the mosaic button in the header and kept as `?theme=dark`.
 - Both choices live in the URL, not browser storage, so a shared link opens the same way.
 - The animation stops for visitors who prefer reduced motion, and the footer has a pause button.
 

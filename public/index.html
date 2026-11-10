@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="tr" data-palette="turkuaz">
+<html lang="tr" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,25 +33,26 @@
           TASH90
         </a>
         <nav class="site-nav" aria-label="Ana menü" data-label="navLabel">
-          <a class="nav-extra" href="#konular" data-copy="nav1">Konular</a>
-          <a class="nav-extra" href="#program" data-copy="nav2">Program</a>
-          <a class="nav-cta" href="#yaz" data-copy="nav3">Bize yazın</a>
+          <a class="nav-extra" href="#topics" data-copy="nav1">Konular</a>
+          <a class="nav-extra" href="#programme" data-copy="nav2">Program</a>
+          <a class="nav-cta" href="#contact" data-copy="nav3">Bize yazın</a>
           <span class="switch" role="group" aria-label="Dil" data-label="langLabel" hidden>
             <button type="button" data-lang="tr" lang="tr" aria-pressed="true">TR</button>
             <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
           </span>
+          <button type="button" class="theme" aria-label="Koyu tema" title="Koyu tema" hidden><svg class="tesserae" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20"><path class="t1" d="M0 0h6v6H0zM7 7h6v6H7zM14 14h6v6h-6z"/><path class="t2" d="M7 0h6v6H7zM14 7h6v6h-6zM0 14h6v6H0z"/><path class="t3" d="M14 0h6v6h-6zM0 7h6v6H0zM7 14h6v6H7z"/></svg></button>
         </nav>
       </div>
-      <div class="wrap hero-copy" id="ust">
+      <div class="wrap hero-copy" id="top">
         <h1 data-copy="h1">Yapay zekâ güvenliği&nbsp;için İstanbul’da buluşuyoruz</h1>
         <p class="lead" data-copy="lead">Bir gün boyunca araştırmacılar, mühendisler ve bu konuya kafa yoran herkes bir arada.</p>
-        <a class="button cta" href="#yaz" data-copy="cta">Bize yazın</a>
+        <a class="button cta" href="#contact" data-copy="cta">Bize yazın</a>
       </div>
     </header>
 
     <main id="main" tabindex="-1">
-      <section class="wrap section" id="konular" aria-labelledby="konular-baslik">
-        <h2 id="konular-baslik" data-copy="topicsH">Ne konuşacağız?</h2>
+      <section class="wrap section" id="topics" aria-labelledby="topics-title">
+        <h2 id="topics-title" data-copy="topicsH">Ne konuşacağız?</h2>
         <div class="topics">
           <article>
             <canvas class="emblem" data-art="emblem" data-glyph="check" data-order="0" aria-hidden="true"></canvas>
@@ -71,8 +72,8 @@
         </div>
       </section>
 
-      <section class="wrap section section-tight" id="program" aria-labelledby="program-baslik">
-        <h2 id="program-baslik" data-copy="dayH">Gün nasıl geçecek?</h2>
+      <section class="wrap section section-tight" id="programme" aria-labelledby="programme-title">
+        <h2 id="programme-title" data-copy="dayH">Gün nasıl geçecek?</h2>
         <div class="split">
           <div class="wide">
             <h3 class="meta label" data-copy="dayL">Gün boyunca</h3>
@@ -83,18 +84,18 @@
           <div class="narrow">
             <h3 class="meta label" data-copy="prepL">Hazırlık</h3>
             <ol class="steps">
-              <li><a href="#yaz" aria-current="step"><span class="dot dot-now" aria-hidden="true"></span><span data-copy="s1">Konuşmacılar ve sponsorlar</span><span class="meta" data-copy="s1t">şimdi</span></a></li>
+              <li><a href="#contact" aria-current="step"><span class="dot dot-now" aria-hidden="true"></span><span data-copy="s1">Konuşmacılar ve sponsorlar</span><span class="meta" data-copy="s1t">şimdi</span></a></li>
               <li class="later"><span class="dot" aria-hidden="true"></span><span data-copy="s2">Tarih&nbsp;ve&nbsp;mekân</span><span class="meta" data-copy="s2t">sırada</span></li>
-              <li class="later"><a href="#yaz"><span class="dot" aria-hidden="true"></span><span data-copy="s3">Kayıt</span><span class="meta" data-copy="s3t">sonra</span></a></li>
+              <li class="later"><a href="#contact"><span class="dot" aria-hidden="true"></span><span data-copy="s3">Kayıt</span><span class="meta" data-copy="s3t">sonra</span></a></li>
             </ol>
           </div>
         </div>
       </section>
 
-      <section class="wrap section section-tight write" id="yaz" aria-labelledby="yaz-baslik">
+      <section class="wrap section section-tight write" id="contact" aria-labelledby="contact-title">
         <div class="split ruled">
           <div class="wide">
-            <h2 id="yaz-baslik" data-copy="spH">Konuşmacı arıyoruz</h2>
+            <h2 id="contact-title" data-copy="spH">Konuşmacı arıyoruz</h2>
             <p data-copy="spP">Sunum, panel ya da açık kürsü. Hangisini istediğinizi ve size uyan tarihleri yazın; günü konuşmacılarla birlikte seçiyoruz.</p>
           </div>
           <div class="narrow">
@@ -118,10 +119,6 @@
         </div>
         <div class="foot-end">
           <a href="mailto:contact@tash90.org" data-copy="mail">Bize ulaşın</a>
-          <span class="switch" role="group" aria-label="Renk" data-label="paletteLabel" hidden>
-            <button type="button" data-palette="turkuaz" aria-pressed="true" data-copy="turkuaz">Turkuaz</button>
-            <button type="button" data-palette="bizans" aria-pressed="false" data-copy="bizans">Bizans</button>
-          </span>
           <button type="button" class="pause" data-copy="pause" hidden>Animasyonu durdur</button>
         </div>
       </div>
