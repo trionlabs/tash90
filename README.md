@@ -2,7 +2,7 @@
 
 Temporary, bilingual landing page for an AI safety and security gathering in Istanbul.
 
-Private source repository: `trionlabs/tash90`. The files in `public/` are intended to be publicly served. No dates, speakers or sponsors are confirmed by this page.
+Source repository: `trionlabs/tash90` (public). The files in `public/` are intended to be publicly served. No dates, speakers or sponsors are confirmed by this page.
 
 ## Edit the page
 
@@ -58,7 +58,7 @@ npx --yes wrangler@4.147.0 deploy
 
 ### Publish from GitHub
 
-Push changes to `main` in the private `trionlabs/tash90` repository. The `Deploy website` workflow checks JavaScript syntax and publishes `public/` to Cloudflare. You can also run it manually from the repository's Actions tab.
+Push changes to `main` in the `trionlabs/tash90` repository. The `Deploy website` workflow checks JavaScript syntax and publishes `public/` to Cloudflare. You can also run it manually from the repository's Actions tab.
 
 Automatic deployment was verified on 3 November 2026. Check the latest run at https://github.com/trionlabs/tash90/actions before assuming an edit is live. A failed deployment leaves the previous version online.
 
